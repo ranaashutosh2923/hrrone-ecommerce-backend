@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from .routers import products, orders
 from .database.connection import close_database
 import atexit
+import os
 
 app = FastAPI(
     title="HROne Ecommerce Backend API",
