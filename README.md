@@ -4,10 +4,23 @@ A FastAPI-based backend application for an ecommerce platform with product and o
 
 ## Features
 
-- **Product Management**: Create and list products with filtering and pagination
-- **Order Management**: Create orders and retrieve user-specific orders
-- **MongoDB Integration**: Efficient data storage and retrieval
-- **RESTful API Design**: Clean and well-structured endpoints
+- **Product Management**: 
+  - Create and list products with filtering and pagination
+  - Automatic duplicate product detection
+  - Text-based search optimization for product names
+  - Efficient data indexing
+- **Order Management**: 
+  - Create orders and retrieve user-specific orders
+  - Optimized product verification
+  - Transaction-safe operations
+- **MongoDB Integration**: 
+  - Efficient data storage and retrieval
+  - Automatic indexing for performance
+  - Transaction support for data consistency
+- **RESTful API Design**: 
+  - Clean and well-structured endpoints
+  - Proper error handling
+  - Pagination support
 
 ## Tech Stack
 
@@ -99,9 +112,28 @@ The API will be available at `http://localhost:8000`
 
 ## Database Design
 
-- **Products Collection**: Stores product information (name, size, price)
-- **Orders Collection**: Stores order data with user references and item details
+### Products Collection
+- Stores product information (name, size, price)
+- Indexes:
+  - Text index on `name` field for efficient text search
+  - Compound unique index on `{name, size, price}` for duplicate prevention
+
+### Orders Collection
+- Stores order data with user references and item details
+- Optimized queries for product verification
+- Transaction-safe operations
+
+## Performance Optimizations
+- Text indexing for efficient product searches
+- Optimized database queries to prevent N+1 query issues
+- Transaction management for data consistency
+- Proper read/write concerns for MongoDB operations
 
 ## Deployment
 
 This application is designed to be deployed on platforms like Render or Railway with MongoDB Atlas as the database.
+
+### Deployment Prerequisites
+- MongoDB Atlas cluster (M0 or higher)
+- Proper environment variables configuration
+- Node.js runtime environment
